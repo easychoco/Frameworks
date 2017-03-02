@@ -4,7 +4,6 @@
 #include "StateNS/Parent.h"
 #include <cassert>
 
-static StateNS::Parent *parent = new StateNS::Parent();
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) 
 {
@@ -13,6 +12,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	SetDrawScreen(DX_SCREEN_BACK);
 	ClearDrawScreen();
 
+	StateNS::Parent *parent = new StateNS::Parent();
 
 	while (!ProcessMessage() && !Input_ESCAPE()) 
 	{
@@ -20,7 +20,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 		parent->update();
 		parent->draw();
-		assert(parent->drawDebug() && "drawDebug‚ÅƒGƒ‰[");
+		assert(parent->drawDebug() && "drawDebugï¿½ÅƒGï¿½ï¿½ï¿½[");
 
 		ScreenFlip();
 	}
