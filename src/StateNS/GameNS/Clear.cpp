@@ -26,7 +26,7 @@ GameChild* Clear::update(GameParent* parent)
 	if (Input_C()) 
 	{
 		//ƒ^ƒCƒgƒ‹‚Ö
-		parent->moveTo();
+		parent->moveTo(parent->NextSeq::SEQ_TITLE);
 	}
 
 	return next;

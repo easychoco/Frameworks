@@ -6,29 +6,28 @@
 #include "DxLib.h"
 
 //graphは全てのShotで同じだからグローバル変数で
-static int graph = NULL;
-
+static int img = NULL;
 static unsigned int black = GetColor(0, 0, 0);
 
 //画像使用バージョン
 Shot::Shot(int _x, int _y, int _w, int _h, float _angle, float _speed) :
-	p(new Point(_x * 1000, _y * 1000, _w, _h)),
-	color(black),
-	angle(_angle - Pi / 2.0f),//仰角90度を基準にする
-	fExit(false) {
-
-	if (!graph)graph = LoadGraph("Data/bullet.png");
-
+p(new IntPoint(_x * 1000, _y * 1000, _w, _h)),
+color(black),
+angle(_angle - Pi / 2.0f),//仰角90度を基準にする
+fExit(false),
+time(0){
+	
 	this->dx = _speed * 1000 * cos(angle);
 	this->dy = _speed * 1000 * sin(angle);
 }
 
 //画像未使用バージョン
 Shot::Shot(int _x, int _y, int _w, int _h, unsigned int _color, float _angle, float _speed) : 
-	p(new Point(_x * 1000, _y * 1000, _w, _h)),
-	color(_color),
-	angle(_angle - Pi / 2.0f),
-	fExit(false){
+p(new IntPoint(_x * 1000, _y * 1000, _w, _h)),
+color(_color),
+angle(_angle - Pi / 2.0f),
+fExit(false),
+time(0){
 
 	this->dx = _speed * 1000 * cos(angle);
 	this->dy = _speed * 1000 * sin(angle);
@@ -42,6 +41,10 @@ void Shot::update() {
 
 	//画面外にあったらreturn
 	if (fExit)return;
+
+	time++;
+
+	angle += pi(60.0f);
 
 	//移動
 	p->x = (float)p->x + dx;
@@ -59,11 +62,14 @@ void Shot::draw() const {
 	//画面外にあったら描画なし
 	if (fExit)return;
 
-	if(color == black)//画像があるなら
-		DrawRotaGraph(p->x / 1000, p->y / 1000, 1.0, angle, graph, true);
+	if (color == black)//画像があるなら
+	{
+		DrawRotaGraph(p->x / 1000, p->y / 1000, 3.0, angle, graph, true);
+		return;
+	}
 	
-	else//画像がないなら
-		DrawCircle(p->x / 1000, p->y / 1000, p->w, color, true);
+	//画像がないなら
+	DrawCircle(p->x / 1000, p->y / 1000, p->w, color, true);
 
 }
 

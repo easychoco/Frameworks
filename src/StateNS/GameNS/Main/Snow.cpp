@@ -1,4 +1,5 @@
 #include"Snow.h"
+#include "../../../Data.h"
 #include"DXLib.h"
 
 #include<cmath>
@@ -21,10 +22,10 @@ y(0)
 
 Snow::~Snow() {}
 
-int Snow::LoadFile(char* filename)
+void Snow::loadImageFile(char* fileName)
  {
-	img = LoadGraph(filename);
-	return img;
+	img = LoadGraph(fileName);
+	assert(img != -1 && "snow::loadImageFile ‰æ‘œ“Ç‚İ‚İƒGƒ‰[");
 }
 
 void Snow::update()
@@ -39,7 +40,7 @@ void Snow::update(int dx, int dy)
 
 	init_x += dx;
 	if (init_x < 0)init_x += 640;
-	x = init_x + (int)(10 * sin(time * Pi / 60));
+	x = init_x + (int)(10 * sin(time * Pi / 60.0f));
 
 	y += (speed + dy);
 	if (y < 0)y += 480;

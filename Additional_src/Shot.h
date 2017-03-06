@@ -1,13 +1,17 @@
 #pragma once
-#include"../../../Data.h"
+#include "../../../Data.h"
+#include <vector>
+
+
 
 class Shot {
 
 private:
-	Point* p;//内部では座標を1000倍して保存しておく
+	IntPoint* p;//内部では座標を1000倍して保存しておく
 	float angle;
 	float dx;
 	float dy;
+	int time;
 
 	//画面内にあるかどうか
 	//trueで画面外
@@ -26,3 +30,32 @@ public:
 	const Point getPoint();
 	bool isExit();
 };
+
+//全てのshotを保管しておく可変長配列
+static std::vector<Shot*> shot;
+
+vectorに新しいShotを追加
+void push_shot(Shot* s) {
+
+	//使っていない弾を見つけて使用
+	short new_sub {0};
+	for (auto _s : shot) 
+	{
+		if (_s[i]->isExit()) 
+		{
+			_s[i] = shot;
+			return;
+		}
+	}
+
+	//全ての弾を使用中なら新しくpush
+	shot.push_back(s);
+
+}
+
+//sを解放
+void deleteAllShot()
+{
+	shot.clear();
+	shot.shrink_to_fit();
+}

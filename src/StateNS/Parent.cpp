@@ -1,5 +1,3 @@
-
-
 #include "../Data.h"
 #include "Parent.h"
 #include "Title.h"
@@ -7,8 +5,7 @@
 namespace StateNS {
 
 
-Parent::Parent() :
-fTitle(false)
+Parent::Parent()
 {
 	this->mChild = new Title();
 }
@@ -20,20 +17,16 @@ Parent::~Parent()
 
 Child* Parent::update() 
 {
+	//返り値は次のシーケンス
 	Child* next = mChild->update(this);
 
+	//シーケンス遷移
 	if (next != mChild) {
 		SAFE_DELETE(mChild);
 		mChild = next;
 	}
 
 	next = 0;
-
-	if (fTitle) {//タイトルに戻る
-		SAFE_DELETE(mChild);
-		mChild = new Title();
-		fTitle = false;
-	}
 
 	return next;
 }
@@ -50,7 +43,7 @@ bool Parent::drawDebug()
 
 void Parent::moveTo() 
 {
-	fTitle = true;
+	
 }
 
 

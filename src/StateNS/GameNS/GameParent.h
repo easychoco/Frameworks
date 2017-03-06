@@ -5,7 +5,7 @@
 
 namespace StateNS{
 
-	class Parent;
+class Parent;
 
 namespace GameStateNS{
 
@@ -14,10 +14,17 @@ namespace GameStateNS{
 class GameParent : public Child
 {
 public:
+	enum NextSeq {
+		//ãŠK‘w‚Ì‚İ—ñ‹“Œ^‚É‚æ‚émoveTo‚ÅˆÚ“®
+		SEQ_TITLE,
+
+		SEQ_NONE,
+	};
+
 	GameParent::GameParent();
 	GameParent::~GameParent();
 	
-	void moveTo();
+	void moveTo(NextSeq);
 
 	Child* update(Parent*);
 	void draw() const;
@@ -25,7 +32,7 @@ public:
 	
 private:
 	GameChild* mChild;
-	bool fTitle;
+	NextSeq mNext;
 };
 
 

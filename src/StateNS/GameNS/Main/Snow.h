@@ -3,7 +3,7 @@ class Snow {
 public:
 	Snow(int init_x, int speed, double exRate);
 	~Snow();
-	int LoadFile(char* FileName);
+	void loadImageFile(char* fileName);
 	void update();
 	void update(int dx, int dy);//dx, dy‚Í©‹@‚ÌˆÚ“®—Ê ©‹@‚Ì“®‚«‚É‡‚í‚¹‚Ä~‚éá‚àˆÚ“®‚·‚é
 	void draw() const;

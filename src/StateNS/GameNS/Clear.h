@@ -2,11 +2,8 @@
 #include "../../Data.h"
 #include "GameParent.h"
 
-#include <vector>
-
 namespace StateNS{
 namespace GameStateNS{
-
 
 
 class Clear : public GameChild

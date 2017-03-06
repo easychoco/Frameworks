@@ -19,7 +19,6 @@ public:
 	
 private:
 	Child* mChild;
-	bool fTitle;
 };
 
 

@@ -2,15 +2,16 @@
 #include "GameParent.h"
 #include "GameChild.h"
 #include "Main/GameMain.h"
+#include "../Title.h"
 
 namespace StateNS {
 namespace GameStateNS{
 
 
 
-GameParent::GameParent() :
-fTitle(false)
+GameParent::GameParent()
 {
+	mNext = NextSeq::SEQ_NONE;
 	this->mChild = new GameMain();
 }
 
@@ -25,15 +26,21 @@ Child* GameParent::update(Parent* parent)
 
 	GameChild* nextChild = mChild->update(this);
 
+	//ŠK‘w“à‘JˆÚ
 	if (nextChild != mChild) 
 	{
 		SAFE_DELETE(mChild);
 		mChild = nextChild;
 	}
-
 	nextChild = 0;
-	if (fTitle)parent->moveTo();
 
+	//ŠK‘wŠÔ‘JˆÚ
+	switch (mNext)
+	{
+	case SEQ_TITLE: next = new Title(); break;
+	}
+
+	mNext = SEQ_NONE;
 
 	return next;
 }
@@ -49,9 +56,9 @@ bool GameParent::drawDebug()
 }
 
 
-void GameParent::moveTo() 
+void GameParent::moveTo(NextSeq _mNext)
 {
-	fTitle = true;
+	mNext = _mNext;
 }
 
 

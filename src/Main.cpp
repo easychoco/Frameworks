@@ -20,7 +20,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 		parent->update();
 		parent->draw();
-		assert(parent->drawDebug() && "drawDebug�ŃG���[");
+		assert(parent->drawDebug() && "drawDebugでエラー");
 
 		ScreenFlip();
 	}
