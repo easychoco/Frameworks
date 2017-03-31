@@ -17,7 +17,7 @@ GameParent::GameParent()
 
 GameParent::~GameParent() 
 {
-
+	SAFE_DELETE(mChild);
 }
 
 Child* GameParent::update(Parent* parent) 

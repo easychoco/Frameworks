@@ -20,6 +20,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 		parent->update();
 		parent->draw();
+
+		//releaseでは読まれない
 		assert(parent->drawDebug() && "drawDebugでエラー");
 
 		ScreenFlip();

@@ -12,7 +12,7 @@ Parent::Parent()
 
 Parent::~Parent() 
 {
-
+	SAFE_DELETE(mChild);
 }
 
 Child* Parent::update() 
